@@ -37,7 +37,7 @@ class pf(Cog_Extension):
             await member.edit(nick=rnick(member))
 
     @commands.Cog.listener()
-    async def on_member_updata(self, before, after):
+    async def on_member_update(self, before, after):
         if not str(before.display_name).startwith(pfData['prefix']) and before.id not in pfData['blacklist'] and before.id not in pfData['blacklist']:
             await member.edit(nick=rnick(after))
     
