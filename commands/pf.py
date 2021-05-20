@@ -40,7 +40,8 @@ class pf(Cog_Extension):
     async def on_member_update(self, before, after):
         if not str(before.display_name).startwith(pfData['prefix']) and before.id not in pfData['blacklist'] and before.id not in pfData['blacklist']:
             await member.edit(nick=rnick(after))
-    
+
+    @commands.has_guild_permissions(administrator=True)
     @commands.command()
     async def pf_setup(self, ctx):
         for member in ctx.guild.members:
@@ -49,22 +50,24 @@ class pf(Cog_Extension):
                     await member.edit(nick=rnick(member))
                 except:
                     pass
-    
+
+    @commands.has_guild_permissions(administrator=True)
     @commands.command()
     async def bladd(self, ctx, mid):
         if mid.isdigit():
             mid = int(mid)
             pfData['blacklist'].append(mid)
             save(pfData)
-            
 
+    @commands.has_guild_permissions(administrator=True)
     @commands.command()
     async def blrem(self, ctx, mid):
         if mid.isdigit():
             mid = int(mid)
             pfData['blacklist'].remove(mid)
             save(pfData)
-    
+
+    @commands.has_guild_permissions(administrator=True)
     @commands.command()
     async def blrem(self, ctx, prefixstr):
         if mid.isdigit():
